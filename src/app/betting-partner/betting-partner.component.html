@@ -1,0 +1,18 @@
+<div class="container full-width" fxLayout="column" fxLayoutAlign="center center">
+	<mat-card class="bettingpartner-card full-width" *ngFor="let bettingpartner of bettingpartners; let i=index">
+		<div fxLayout fxLayoutAlign="space-between center">
+			<div>{{bettingpartner.name}}</div>
+			<div fxLayout fxLayoutGap="8px">
+				<button mat-icon-button (click)="openMerchantEditor(bettingpartner, i)"><mat-icon>edit</mat-icon></button>
+				<button mat-icon-button (click)="deleteMerchant(bettingpartner, i)"><mat-icon>delete</mat-icon></button>
+			</div>
+		</div>
+		<div fxLayout fxLayoutAlign="space-between center">
+			<div>{{bettingpartner.website}}</div>
+			<div>{{bettingpartner.status}}</div>
+		</div>
+	</mat-card>		
+	<div class="floating-action-button" fxFlexAlign="end" (click)="openMerchantEditor(undefined, -1)">
+		<button mat-fab><mat-icon>add</mat-icon></button>
+	</div>
+</div>

@@ -5,34 +5,36 @@
         <li *ngFor="let error of errors">{{error}}</li>
       </ul>
     </div>
-    <mat-tab-group mat-stretch-tabs dynamicHeight [(selectedIndex)]="selectedTab">
+    <mat-card>
+      <form fxLayout="column" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center">
+        <img src="/assets/images/logo-128x128.png" width="196">
+        <p class="h4" fxFlexAlign.gt-xs="center">Sign In</p>
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Phone Number or Mail ID" type="text" id="inputUsername" formControlName="inputUsername" class="form-control">
+          <span matPrefix>
+            <i class="fa fa-user prefix grey-text"></i>&nbsp;&nbsp;
+          </span>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Password" [type]="hide?'password':'text'" id="inputPassword" formControlName="inputPassword" class="form-control" (keyup.enter)="login()">
+          <span matPrefix>
+            <i class="fa fa-lock prefix grey-text"></i>&nbsp;&nbsp;
+          </span>
+          <mat-icon class="mouse-hand" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <div fxLayout fxLayoutAlign="space-between center">
+          <mat-checkbox [hidden]="true" formControlName="inputRememberMe" ngDefaultControl>Remember Me</mat-checkbox>
+          <a mat-button color="primary" [routerLink]="'/forgot-password'">Forgot Password</a>
+        </div>
+        
+        <div class="text-center full-width">
+          <button class="full-width" mat-raised-button type="submit"  [disabled]="loginForm.invalid" color="primary" (click)="login();">Login</button>
+        </div>
+      </form>
+    </mat-card>
+    <mat-tab-group *ngIf="false" mat-stretch-tabs dynamicHeight [(selectedIndex)]="selectedTab">
       <mat-tab label="Existing User? Login">
-      	<mat-card>
-	        <form fxLayout="column" [formGroup]="loginForm">
-	          <p class="h4" fxFlexAlign.gt-xs="center">Sign In</p>
-	          <mat-form-field appearance="outline">
-	            <input matInput placeholder="Phone Number or Mail ID" type="text" id="inputUsername" formControlName="inputUsername" class="form-control">
-	            <span matPrefix>
-	            	<i class="fa fa-user prefix grey-text"></i>&nbsp;&nbsp;
-	            </span>
-	          </mat-form-field>
-	          <mat-form-field appearance="outline">
-	            <input matInput placeholder="Password" [type]="hide?'password':'text'" id="inputPassword" formControlName="inputPassword" class="form-control" (keyup.enter)="login()">
-	            <span matPrefix>
-	            	<i class="fa fa-lock prefix grey-text"></i>&nbsp;&nbsp;
-	            </span>
-	            <mat-icon class="mouse-hand" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-	          </mat-form-field>
-            <div fxLayout fxLayoutAlign="space-between center">
-              <mat-checkbox [hidden]="true" formControlName="inputRememberMe" ngDefaultControl>Remember Me</mat-checkbox>
-              <a mat-button color="primary" [routerLink]="'/forgot-password'">Forgot Password</a>
-            </div>
-	          
-	          <div class="text-center py-4 mt-3">
-	            <button mat-raised-button type="submit"  [disabled]="loginForm.invalid" color="primary" (click)="login();">Login</button>
-	          </div>
-	        </form>
-        </mat-card>
+      	
       </mat-tab>
       <mat-tab label="New User? Sign Up">
         <form [formGroup]="cardForm" fxLayout="column">

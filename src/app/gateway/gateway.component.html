@@ -1,0 +1,16 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+	<h3>Payment Gateways</h3>
+	<mat-card class="merchant-card full-width" *ngFor="let gateway of gateways; let i=index">
+		<div fxLayout fxLayoutAlign="space-between center">
+			<div>{{gateway.name}}</div>
+			<div>{{gateway.status}}</div>
+			<div fxLayout fxLayoutGap="8px">
+				<button mat-icon-button (click)="openGatewayEditor(gateway, i)"><mat-icon>edit</mat-icon></button>
+				<button mat-icon-button (click)="deleteGateway(gateway, i)"><mat-icon>delete</mat-icon></button>
+			</div>
+		</div>
+	</mat-card>		
+	<div class="floating-action-button" fxFlexAlign="end" (click)="openGatewayEditor(undefined, -1)">
+		<button mat-fab><mat-icon>add</mat-icon></button>
+	</div>
+</div>

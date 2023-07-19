@@ -1,0 +1,18 @@
+<div class="container full-width" fxLayout="column" fxLayoutAlign="center center">
+	<mat-card class="merchant-card full-width" *ngFor="let merchant of merchants; let i=index">
+		<div fxLayout fxLayoutAlign="space-between center">
+			<div>{{merchant.name}}</div>
+			<div fxLayout fxLayoutGap="8px">
+				<button mat-icon-button (click)="openMerchantEditor(merchant, i)"><mat-icon>edit</mat-icon></button>
+				<button mat-icon-button (click)="deleteMerchant(merchant, i)"><mat-icon>delete</mat-icon></button>
+			</div>
+		</div>
+		<div fxLayout fxLayoutAlign="space-between center">
+			<div>{{merchant.website}}</div>
+			<div>{{merchant.status}}</div>
+		</div>
+	</mat-card>		
+	<div class="floating-action-button" fxFlexAlign="end" (click)="openMerchantEditor(undefined, -1)">
+		<button mat-fab><mat-icon>add</mat-icon></button>
+	</div>
+</div>

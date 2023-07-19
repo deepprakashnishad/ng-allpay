@@ -1,199 +1,33 @@
-a{
+.card-title{
+	margin: 16px 4px;
+}
+
+.mat-card{
+	padding-bottom: 2px;
+	padding-top: 32px;
+	margin-bottom: 16px;
+	min-width: 150px;
+}
+
+.bottom-container{
+	padding: 64px 12px;
+	border-radius: 32px;
 	width: 100%;
+	min-height: 40%;
+	background: linear-gradient(45deg, rgba(75,0,116,0.7) 15%, rgba(214,0,166,1) 100%, rgba(0,0,0,1) 100%);
 }
 
-.first-container {
-  height:35vw;
-  width: 100%;
-  max-height: 600px;
+.my-card{
+	border-radius: 16px;
+	background: white;
+	margin: 32px 16px;
+	cursor: pointer;
 }
 
-.animition-type-selector {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  align-content: center;
-  justify-content: center;
-  color: white;
-  padding-top: 1em;
+.arrow-container{
+	padding-right: 16px; 
 }
 
-.second-container .title {
-  //background: rgba(0,0,0,0.5);
-  user-select: none;
-  font-size: 6vw;
-  margin: 2vw;
-  padding: 0px;
-}
-
-.sub-title{
-  font-size: 4vw; 
-  margin: 1.5vw;
-}
-
-.desc{
-  font-size: 2.5vw;
-  text-align: justify;
-}
-
-.button {
-  background: #3f51b5;
-  cursor: pointer;
-  border-radius: 0.3em;
-}
-.title,
-.button {
-  height: 2.5em;
-  min-width: 4.5em;
-
-  margin-bottom: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.5em 0.7em;
-  transition: background 20ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
-
-  &:not(:last-child) {
-    margin-right: 1em;
-  }
-}
-.button:hover,
-.active {
-  background: #2196f3;
-}
-
-.overlay {
-  background-color: #5e8ff41a;
-  position: absolute; 
-  left: 30%;
-  top: 20%;
-  width: 100%;
-  height: 100%;
-}
-
-.second-container{
-  padding: 50px;
-  color: white;
-  margin-bottom: 50px;
-}
-
-h1.header{
-  font-size: 72px;
-  color: white;
-}
-
-.overlay {
-  background-color: #30303075;
-  width: 100%;
-}
-
-mat-card.category{
-  background-color: #004C4C;
-  color: white;
-  text-align: center;
-  vertical-align: center;
-  width: 90px;
-  height: 90px;
-  margin: 5px;
-  padding-top: 30px;
-}
-
-.third-container{
-  background-image: url("/assets/images/white-texture.jpeg");
-  background-repeat: repeat;
-  padding: 110px 72px;
-}
-
-.my-title{
-  font-size: 6vw;
-  font-weight: bold;
-}
-
-.call-to-action-dark{
-  cursor: pointer;
-  min-width: 120px;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 16px 32px;
-  text-align: center;
-  background-color: black;
-  color: white; 
-  -webkit-transition: background 0.25s ease; /* For Safari 3.0 to 6.0 */
-  transition: background 0.25s ease;
-  transform-origin: top right;
-}
-
-.call-to-action-dark:hover{
-  background-color: white;
-  color: black;
-}
-
-.zoom{
-  transition: transform .2s;
-}
-
-.zoom:hover {
-  transform: scale(1.1);
-}
-
-.small-title{
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.main-container{
-    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
-    background-size:cover;
-    background-repeat: repeat;
-        -webkit-animation: slidein 100s;
-        animation: slidein 100s;
-
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
-}
-
-@-webkit-keyframes slidein {
-from {background-position: top; background-size:3000px; }
-to {background-position: -100px 0px;background-size:2750px;}
-}
-
-@keyframes slidein {
-from {background-position: top;background-size:3000px; }
-to {background-position: -100px 0px;background-size:2750px;}
-
-}
-
-.fourth-container{
-  background: linear-gradient(0deg, #30303075, #30303075), url("/assets/images/carousel/business.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  position: static;
-  padding: 15px 80px;
-  color: white;
-  margin-bottom: 20px;
-  .small-title{
-    background-color: black;
-    padding: 16px;
-  }
-
-  .my-title{
-    padding: 24px;
-    max-width: 800px; 
-    text-align: center;
-  }
-}
-
-.dark-overlay{
-  background-color: #30303075;
-  width: 100%;
-  height: 100%;
-  position: static;
+.card-button{
+	cursor: pointer;
 }

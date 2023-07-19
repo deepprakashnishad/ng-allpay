@@ -26,10 +26,16 @@ import { AboutUsComponent } from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './static-page/faq/faq.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
-import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
-import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
+import { MerchantComponent } from './merchant/merchant.component';
+import { MerchantEditorComponent } from './merchant/merchant-editor/merchant-editor.component';
+import { BettingPartnerComponent } from './betting-partner/betting-partner.component';
+import { BettingPartnerEditorComponent } from './betting-partner/betting-partner-editor/betting-partner-editor.component';
+import { GatewayComponent } from './gateway/gateway.component';
+import { GatewayEditorComponent } from './gateway/gateway-editor/gateway-editor.component';
+import { ReportComponent } from './reports/report.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -81,9 +87,15 @@ const notifierDefaultOptions: NotifierOptions = {
     FaqComponent,
     ContactUsComponent,
     PrivacyComponent,
-    CampaignComponent,
-    CreateCampaignComponent,
-    DailyReportComponent
+    DailyReportComponent,
+    MerchantComponent,
+    MerchantEditorComponent,
+    GatewayComponent,
+    GatewayEditorComponent,
+    ReportComponent,
+    DashboardComponent,
+    BettingPartnerComponent,
+    BettingPartnerEditorComponent
    ],
   imports: [
     BrowserModule,
@@ -96,16 +108,11 @@ const notifierDefaultOptions: NotifierOptions = {
     AdminModule,
     PersonModule,
     SharedModule,
-    // ShareButtonsModule,
-    // ShareIconsModule,
-    // QuillModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireStorageModule,
     
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],

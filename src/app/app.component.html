@@ -13,22 +13,9 @@
 		<router-outlet></router-outlet>
 
 		<notifier-container class="notifier-container"></notifier-container>
-		<button class="scroll-top-button" mat-fab (click)="scrollToTopFunc($event)">
+		<button *ngIf="false" class="scroll-top-button" mat-fab (click)="scrollToTopFunc($event)">
 	        <mat-icon>arrow_upward</mat-icon>
 	    </button>
-		<!-- <app-sidenav #mSidebar fxFlex="auto"></app-sidenav> -->
-		<!-- <div class="content-container-without-sidenav" *ngIf="!isSidenav" fxFlex="auto">
-		<router-outlet #m="outlet"></router-outlet>
-	</div> -->
-		<!-- Footer -->
-		<mat-toolbar class="footer" fxLayout="column" fxLayoutAlign="space-around center">
-			<div class="footer-text">Good Act is an open fundraising platform for all fundraiser, Raise fund for any cause Worldwide.</div>
-			<div fxLayout fxLayoutAlign="space-between center">
-				<button mat-icon-button><mat-icon>facebook</mat-icon></button>
-				<button mat-icon-button><i class="fab fa-twitter"></i></button>
-				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
-			</div>
-		</mat-toolbar>	
 	</main>
 
 </div>

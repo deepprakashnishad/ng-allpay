@@ -1,0 +1,22 @@
+<div class="container" fxLayout="column">
+	<mat-form-field>
+		<mat-label>Merchant Name</mat-label>
+		<input matInput placeholder="Merchant Name" type="text" [(ngModel)]="merchant.name" class="form-control">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Website</mat-label>
+		<input matInput placeholder="Merchant Website" type="text" [(ngModel)]="merchant.website" class="form-control">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Status</mat-label>
+		<mat-select [(ngModel)]="merchant.status">
+			<mat-option value="ACTIVE">ACTIVE</mat-option>
+			<mat-option value="INACTIVE">INACTIVE</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<div>
+		<button class="full-width" mat-raised-button color="primary" (click)="save()">
+			Save
+		</button>
+	</div>
+</div>

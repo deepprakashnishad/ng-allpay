@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {AuthGuardService} from './authentication/auth-guard.service';
 import {CanDeactivateGuardService} from './authentication/can-deactivate-guard.service';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { PermissionComponent } from './admin/permission/permission.component';
 import { RoleComponent } from './admin/role/role.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
@@ -15,8 +14,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './static-page/faq/faq.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
-import { CampaignComponent } from './static-page/campaign/campaign.component';
-import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
+import { MerchantComponent } from './merchant/merchant.component';
+import { GatewayComponent } from './gateway/gateway.component';
+import { BettingPartnerComponent } from './betting-partner/betting-partner.component';
+import { ReportComponent } from './reports/report.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 
 const routes: Routes = [
@@ -31,29 +33,29 @@ const routes: Routes = [
 		data: { title: 'Home', permissions: []}
 	},
 	{
-		path: 'about-us', 
-		component: AboutUsComponent,
-		data: { title: 'About-Us', permissions: []}
+		path: 'merchants', 
+		component: MerchantComponent,
+		data: { title: 'Merchants', permissions: []}
 	},
 	{
-		path: 'explore', 
-		component: CampaignComponent,
-		data: { title: 'Explore', permissions: []}
+		path: 'betting-partner', 
+		component: BettingPartnerComponent,
+		data: { title: 'BettingPartners', permissions: []}
 	},
 	{
-		path: 'campaigns/edit', 
-		component: CreateCampaignComponent,
-		data: { title: 'Create Component', permissions: []}
+		path: 'payment-gateways', 
+		component: GatewayComponent,
+		data: { title: 'Payment Gateway', permissions: []}
 	},
 	{
-		path: 'campaigns/edit/:id', 
-		component: CreateCampaignComponent,
-		data: { title: 'Create Component', permissions: []}
+		path: 'report', 
+		component: ReportComponent,
+		data: { title: 'Report', permissions: []}
 	},
 	{
-		path: 'faq', 
-		component: FaqComponent,
-		data: { title: 'FAQ', permissions: []}
+		path: 'dashboard', 
+		component: DashboardComponent,
+		data: { title: 'Dashboard', permissions: []}
 	},
 	{
 		path: 'privacy', 
@@ -66,80 +68,13 @@ const routes: Routes = [
 		data: { title: 'Contact-Us', permissions: []}
 	},
 	{
-		path: 'downloads', 
-		component: HomeComponent,
-		data: { title: 'Downloads', permissions: []}
-	},
-	{
-		path: 'profile', 
-		component: ProfileComponent,
-		data: { title: 'My Profile', permissions: []}
-	},
-	{
-		path: 'daily-report', 
-		component: DailyReportComponent,
-		data: { title: 'My Profile', permissions: []}
-	},
-	{
-		path: 'admin', 
-		component: SidenavComponent,
-		canActivate: [AuthGuardService], 
-		canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Admin', permissions: ['SHOP_EDITOR']},
-		children: [
-			{
-				path: '', 
-				component: DashboardComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Brands', permissions: ['SHOP_EDITOR','CREATE_BRAND', 'UPDATE_BRAND', 'DELETE_BRAND']},
-			},
-			{
-				path: 'user-report',
-				component: UserReportComponent,
-				canActivate: [AuthGuardService],
-				canDeactivate: [CanDeactivateGuardService],
-				data: { title: 'Attributes', permissions: ['SHOP_EDITOR'] }
-			},
-			{
-				path: 'person',
-				component: PersonComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'product', permissions: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']},				
-			},
-			{
-				path: 'permission', 
-				component: PermissionComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Permission', permissions: []}
-			},	
-		
-			{
-				path: 'role', 
-				component: RoleComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Role', permissions: []}
-			},
-			{
-				path: 'activity-log', 
-				component: ActivityLogComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Activity Log', permissions: ['SHOP_EDITOR']}
-			},	
-			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
-				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},
-		]
+		path: 'users', 
+		component: PersonComponent,
+		data: { title: 'Person', permissions: []}
 	},
 	
 	/* {path: 'person', loadChildren: './person/person.module#PersonModule', canLoad: [AuthGuardService],
 		data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}}, */
-
-	/* {path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuardService],
-		data:{title: 'Admin', resources: []}}, */
 ];
 
 @NgModule({

@@ -1,68 +1,60 @@
-<div class="main-container">
-    <div class="first-container">
-      <app-carousel [slides]="slides" [animationType]="'fade'"></app-carousel>
-    </div>
-    <div class="second-container" fxLayout fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column">
-        <div fxLayout="column" fxLayoutAlign="center center" fxFlex>
-            <div class="sub-title">Cause you can donate for!</div>
-            <div class="title">Top Categories</div>
-            <p class="desc">GoodAct is built for donation based crowdfunding campaigns. We accept donations to support all kind of campaigns like Health, Education, Startup Idea, Farmer, Personal cause and more.</p>    
-        </div>
-        <div fxFlex>
-            <div fxLayout="column">
-                <div fxLayout fxLayoutAlign="center center">
-                    <mat-card class="category zoom">
-                        <mat-icon>memory</mat-icon>
-                        <p class="icon-title">Technology</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>business_center</mat-icon>
-                        <p class="icon-title">Startup</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>school</mat-icon>
-                        <p class="icon-title">Educaton</p>
-                    </mat-card>        
-                </div>
-                <div fxLayout fxLayoutAlign="center center">
-                    <mat-card class="category zoom">
-                        <mat-icon>medical_services</mat-icon>
-                        <p class="icon-title">Medical</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>styler</mat-icon>
-                        <p class="icon-title">Fashion</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>movie_edit</mat-icon>
-                        <p class="icon-title">Films &amp; Videos</p>
-                    </mat-card>        
-                </div>
+<div class="container" fxLayout="column" fxLayoutAlign="space-between end">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-card class="card-button" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/dashboard')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>dashboard</mat-icon>
+                <div>Dashboard</div>
             </div>
-            
-        </div>
+            <div fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
+        </mat-card>
+        <mat-card class="card-button" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/person')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>groups</mat-icon>
+                <div>Users</div>
+            </div>
+            <div fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
+        </mat-card>
+        <mat-card class="card-button" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/betting-partner')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>handshake</mat-icon>
+                <div>Betting<br>Partners</div>
+            </div>
+            <div fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
+        </mat-card>
+        <mat-card class="card-button" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/merchants')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>point_of_sale</mat-icon>
+                <div>Merchants</div>
+            </div>
+            <div fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
+        </mat-card>
     </div>
-    <div class="third-container" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="36px">
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center">
-            <div class="my-title">Ready to Raise Funds for Ideas?</div>
-            <div class="call-to-action-dark">Make It Happen</div>
+    <div class="bottom-container" fxFlexAlign="end">
+        <div class="my-card" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/payment-gateways')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>account_balance</mat-icon>
+                <div>Payment Gateways</div>
+            </div>
+            <div class="arrow-container" fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
         </div>
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
-            <div class="my-title">Want to fulfill your dreams?</div>
-            <div class="call-to-action-dark">Join Us</div>
+        <div class="my-card" fxLayout="column" fxLayoutAlign="end end" (click)="navigateTo('/reports')">
+            <div class="full-width card-title" fxLayout fxLayoutAlign="center center" fxLayoutGap="4px">
+                <mat-icon>assignment</mat-icon>
+                <div>Payment Reports</div>
+            </div>
+            <div class="arrow-container" fxFlexAlign="end">
+                <mat-icon class="x2-icon">trending_flat</mat-icon>
+            </div>
         </div>
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
-            <div class="my-title">Want to help others?</div>
-            <div class="call-to-action-dark">Donate</div>
-        </div>
-        <div class="small-title">Trusted by more than 12000 fundraisers & counting more</div>
-    </div>
-    <div class="fourth-container">
-        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-            <div class="small-title">Power of Unity</div>
-            <div class="my-title">Together more creativity as full energy of inidividual is brought out</div>
-            <div class="call-to-action-dark">START A PROJECT</div>    
-        </div>
-        <div class="dark-overlay"></div>
     </div>
 </div>
