@@ -11,7 +11,7 @@
       "destination": "/index.html"
     }, {
       "source": "/api/:path*",
-      "destination": "https://goodact.onrender.com/:path"
+      "destination": "https://node-allpay.onrender.com/:path"
     }],
     "ignore": [
       "firebase.json",

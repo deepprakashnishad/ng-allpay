@@ -208,6 +208,22 @@ export class AuthenticationService {
     }, httpOptions);
   }
 
+  /*pay(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + "Merchanttoken",
+        AuthInterceptorSkipHeader: ''
+      })
+    };
+
+    return this.http.post<AuthResponse>(`${environment.baseurl}/PaymentGateway/redirectToPayment`, {
+      orderId: "Order213212",
+      userid: "12323",
+      username: "Deep"
+    }, httpOptions); 
+  }*/
+
   handleForbiddenRequest(error){
     this.redirectUrl = this.router.url
     this.router.navigate(['/login', {'error':[error.error.msg]}])

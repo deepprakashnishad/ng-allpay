@@ -44,6 +44,14 @@ export class BettingPartnerService {
        catchError(this.handleError('Delete Merchant', null)));
   }
 
+  generateToken(bettingpartnerId: string): Observable<any>{
+    return this.http.post<any>(this.bettingpartnerUrl +'/'+ "generatePartnerToken", {
+      "partnerId": bettingpartnerId
+    })
+    .pipe(
+       catchError(this.handleError('Generate Betting Partner Token', null))); 
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

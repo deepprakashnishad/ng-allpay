@@ -14,6 +14,7 @@ import {
   MAT_BOTTOM_SHEET_DATA
 } from '@angular/material/bottom-sheet';
 import { BettingPartner } from './../betting-partner';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-betting-partner-editor',
@@ -23,9 +24,11 @@ import { BettingPartner } from './../betting-partner';
 export class BettingPartnerEditorComponent implements OnInit {
 
   bettingpartner: BettingPartner;
+  token: string;
 
   constructor(
     private mService: BettingPartnerService,
+    private clipboard: Clipboard,
     private _bottomSheetRef: MatBottomSheetRef<BettingPartnerEditorComponent>,
     private notifier: NotifierService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
@@ -55,5 +58,17 @@ export class BettingPartnerEditorComponent implements OnInit {
         this._bottomSheetRef.dismiss(this.bettingpartner);
     	});
     }
+  }
+
+  generateToken(){
+    this.mService.generateToken(this.bettingpartner.id).subscribe(result=>{
+      if(result.success){
+        this.token = result.mToken;
+        this.clipboard.copy(this.token);
+        this.notifier.notify("success", "Token copied to clipboard successfully");
+      }else{
+        this.notifier.notify("error", "Failed to generate token");
+      }
+    });
   }
 }

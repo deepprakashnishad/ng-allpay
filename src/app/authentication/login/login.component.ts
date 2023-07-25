@@ -194,5 +194,11 @@ export class LoginComponent implements OnInit{
   referrerSelected(event){
     this.referrer = event;
   }
+
+  /*pay(){
+    this.authService.pay().subscribe(result=>{
+      console.log(result);
+    });
+  }*/
 }
 

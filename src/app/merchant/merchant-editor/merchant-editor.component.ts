@@ -14,6 +14,7 @@ import {
   MAT_BOTTOM_SHEET_DATA
 } from '@angular/material/bottom-sheet';
 import { Merchant } from './../merchant';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-merchant-editor',
@@ -23,11 +24,13 @@ import { Merchant } from './../merchant';
 export class MerchantEditorComponent implements OnInit {
 
   merchant: Merchant;
+  token: string;
 
   constructor(
     private mService: MerchantService,
     private _bottomSheetRef: MatBottomSheetRef<MerchantEditorComponent>,
     private notifier: NotifierService,
+    private clipboard: Clipboard,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
   ){
   	if(!this.merchant){
@@ -55,5 +58,17 @@ export class MerchantEditorComponent implements OnInit {
         this._bottomSheetRef.dismiss(this.merchant);
     	});
     }
+  }
+
+  generateToken(){
+    this.mService.generateToken(this.merchant.id).subscribe(result=>{
+      if(result.success){
+        this.token = result.mToken;
+        this.clipboard.copy(this.token)
+        this.notifier.notify("success", "Token copied to clipboard successfully");
+      }else{
+        this.notifier.notify("error", "Failed to generate token");
+      }
+    });
   }
 }

@@ -10,13 +10,12 @@ export const environment = {
   baseurl: "http://localhost:4200/api",
   
   firebase: {
-    apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
-    authDomain: "good-act.firebaseapp.com",
-    projectId: "good-act",
-    storageBucket: "good-act.appspot.com",
-    messagingSenderId: "769896398353",
-    appId: "1:769896398353:web:6d2873cc864e1495927bb0",
-    measurementId: "G-T3FZ3Q73RL"
+    apiKey: "AIzaSyAjDTRI2NaX-H6D6gdWECulh4NZbLuNx7s",
+    authDomain: "all-pay-2023.firebaseapp.com",
+    projectId: "all-pay-2023",
+    storageBucket: "all-pay-2023.appspot.com",
+    messagingSenderId: "57948518532",
+    appId: "1:57948518532:web:acf9027c8214bc8af76ad1"
   },
   razorpay: {
     keyId: "rzp_test_OhtTwkr00dbNU1"
