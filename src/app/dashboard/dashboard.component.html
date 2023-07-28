@@ -1,1 +1,11 @@
-<div class="container">This is a dashboard page</div>
+<div class="container">
+	<div class="chart-container">
+	    <canvas #myCanvas baseChart
+	            [datasets]="barChartData"
+	            [labels]="barChartLabels"
+	            [colors]="chartColors"
+	            [options]="barChartOptions"
+	            [legend]="barChartLegend"
+	            [chartType]="barChartType"></canvas>
+	</div>
+</div>

@@ -48,7 +48,7 @@ const routes: Routes = [
 		data: { title: 'Payment Gateway', permissions: []}
 	},
 	{
-		path: 'report', 
+		path: 'reports', 
 		component: ReportComponent,
 		data: { title: 'Report', permissions: []}
 	},

@@ -18,6 +18,16 @@ export class ReportService {
   ){
     this.reportUrl = environment.baseurl+'/Report';  
   }
+
+  getTransactions(startDate: string, endDate: string, offset: number=0, pageSize: number=50): Observable<any> {
+    if(!startDate){
+      var currDate = new Date();
+      startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
+    }
+    return this.http.get<any>(`${this.reportUrl}/transaction?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}`)
+      .pipe(
+        catchError(this.handleError('Get Daily Report', null)));
+  }
   
 
   getDailyReport(startDate: string, endDate: string): Observable<any> {

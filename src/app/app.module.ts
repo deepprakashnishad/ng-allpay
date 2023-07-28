@@ -20,6 +20,7 @@ import { PersonModule } from './person/person.module';
 // import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { Navigation } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './static-page/about-us/about-us.component';
@@ -110,7 +111,7 @@ const notifierDefaultOptions: NotifierOptions = {
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireStorageModule,
-    
+    ChartsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
