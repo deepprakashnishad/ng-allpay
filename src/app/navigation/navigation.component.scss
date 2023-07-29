@@ -3,6 +3,34 @@
   background-color: transparent;
 }
 
+.sidebar-open-arrow{
+  margin-top: 16px;
+  padding: 16px;
+  height: 32px;
+  width: 32px;
+  background: linear-gradient(82deg, rgba(75,0,116,0.7) 75%, rgba(214,0,166,1) 100%, rgba(0,0,0,1) 100%);
+}
+
+.user-container{
+  border-bottom: 1px solid;
+  padding: 4px 4px 4px 8px;
+  border-color: #d9f6ff;
+}
+
+.side-nav-container{
+  border-right: 1px solid;
+  border-color: #d9f6ff;
+}
+
+.profile-pic{
+  border-radius: 50%;
+  width:75px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
 a.pageLink, .nav-icon {
   padding: 0 14px;
   color:#731539;  
@@ -10,7 +38,13 @@ a.pageLink, .nav-icon {
 
 button.mobPageLink {
   padding: 0 14px;
-  color: white;
+  color: black;
+  align-self:flex-start;
+}
+
+button.mobPageLink-selected.mat-button {
+  padding: 0 14px;
+  color: #0093ff;
   align-self:flex-start;
 }
 
@@ -45,30 +79,22 @@ a{
 
 .sidebar{
   background-color: #731539;
-  position: absolute;
-  right: 0;
+  left: 0;
+  top: 0;
   width: 245px;
-  height: 80%;
+  height: 100%;
   padding: 5%;
   z-index: 100;
   overflow: auto;
-  top: 20%;
-
-  button{
-      color: white;
-    text-align: left;
-    padding: 0;
-  }
 }
 
 .left-drawer {
   background-color: #731539;
-  position: absolute;
   left: 0;
   top: 0;
-  width: 245px !important;
+  width: 245px;
   height: 100%;
-  padding: 5%;
+  padding: 1%;
   z-index: 100;
   overflow: auto;
   // top: 20%;

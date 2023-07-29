@@ -3,29 +3,28 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Slide } from "../shared/carousel/carousel.interface";
 import { AnimationType } from "../shared/carousel/carousel.animations";
-import { CarouselComponent } from "../shared/carousel/carousel.component";
-// import { SwiperComponent } from "swiper/angular";
-// import SwiperCore, { EffectFlip, Pagination, Navigation, Autoplay, Swiper } from "swiper/core";
-
-// // install Swiper modules
-// SwiperCore.use([EffectFlip, Pagination, Navigation, Autoplay]);
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public media: MediaObserver
   ) {
   }
 
-  ngAfterViewInit(): void {
+  ngOnDestroy(): void {
   }
 
   ngOnInit() {
+    if(this.media.isActive("gt-xs")){
+      this.router.navigate(["/dashboard"]);  
+    }
   }
 
   navigateTo(url) {

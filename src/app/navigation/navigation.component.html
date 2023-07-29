@@ -1,5 +1,5 @@
 <app-progress-spinner></app-progress-spinner>
-<mat-toolbar class="navbar" #navToolbar>
+<!-- <mat-toolbar *ngIf="false" class="navbar" #navToolbar>
 	<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
 		<div fxLayout="row" fxFlex="20">
 			<picture>
@@ -7,9 +7,9 @@
 			  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
 			  	<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto;">
 			</picture>
-			<!-- <div class="header-logo">
+			<div class="header-logo">
 				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
-			 </div> -->
+			 </div>
 		</div>
 		<div fxLayout="row" fxFlex="60" fxLayoutAlign="center">
 			<button mat-button (click)="navigateTo('/')">
@@ -24,18 +24,9 @@
 			<button mat-button (click)="navigateTo('/reports')">
 				Transaction Reports
 			</button>
-			<!-- <button mat-button (click)="navigateTo('/contact')">
-				Betting Partners
-			</button> -->
 			<button mat-button (click)="navigateTo('/person')">
 				Users
 			</button>
-			<!-- <button mat-button (click)="navigateTo('/profile')">
-				Profile
-			</button> -->
-			<!-- <button mat-button (click)="navigateTo('/daily-report')">
-				Daily Report
-			</button> -->
 		 </div>
 		<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
 			<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
@@ -61,33 +52,54 @@
 			</button>
 		</div>
 	</mat-toolbar-row>
-</mat-toolbar>
-
-<div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
-	<div fxLayout="column" fxLayoutGap="16px">
-		<button mat-button class="mobPageLink" (click)="navigateTo('/')">
-			Dashboard
-		</button>
-		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/merchants')">
-			Merchants
-		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/payment-gateways')">
-			Payment Gateways
-		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/reports')">
-			Reports
-		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/users')">
-			Users
-		</button>
-		<!-- <button mat-button class="mobPageLink" (click)="navigateTo('/profile')">
-			Profile
-		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
-			Download
-		</button> -->
-		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
-			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+</mat-toolbar> -->
+<div fxLayout>
+	<div [@openClose]="isLeftBarOpen?'open':'closed'" [ngStyle]="{'position': media.isActive('xs') ? 'absolute' : 'relative'}" >
+		<div class="side-nav-container" fxLayout="column" fxLayoutGap="16px">
+			<div class="user-container" fxLayout="column">
+				<div fxLayout fxLayoutAlign="space-between start">
+					<img src="/assets/images/profile/profile.png" class="profile-pic" />
+					<button mat-icon-button (click)="isLeftBarOpen=false">
+						<mat-icon>close</mat-icon>
+					</button>
+				</div>
+				
+				<div class="bold">{{name}}</div>
+				<div class="bold">{{mobile}}</div>
+			</div>
+			<button mat-button [ngClass]="selectedTab!=='dashboard'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/dashboard', 'dashboard')">
+				Dashboard
+			</button>
+			<button *ngIf="isLoggedIn" mat-button [ngClass]="selectedTab!=='merchants'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/merchants', 'merchants')">
+				Merchants
+			</button>
+			<button mat-button [ngClass]="selectedTab!=='payment-gateways'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/payment-gateways', 'payment-gateways')">
+				Payment Gateways
+			</button>
+			<button mat-button [ngClass]="selectedTab!=='reports'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/reports', 'reports')">
+				Reports
+			</button>
+			<button mat-button [ngClass]="selectedTab!=='betting-partner'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/betting-partner', 'betting-partner')">
+				Betting Partners
+			</button>
+			<button mat-button [ngClass]="selectedTab!=='users'? 'mobPageLink': 'mobPageLink-selected'" (click)="navigateTo('/users', 'users')">
+				Users
+			</button>
+			<!-- <button mat-button class="mobPageLink" (click)="navigateTo('/profile')">
+				Profile
+			</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
+				Download
+			</button> -->
+			<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
+				{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+			</button>
+		</div>
+	</div>	
+	<div *ngIf="!isLeftBarOpen" class="sidebar-open-arrow" fxLayoutAlign="center center">
+		<button mat-icon-button (click)="isLeftBarOpen=!isLeftBarOpen">
+			<mat-icon *ngIf="!isLeftBarOpen">arrow_forward_ios</mat-icon>
 		</button>
 	</div>
 </div>
+

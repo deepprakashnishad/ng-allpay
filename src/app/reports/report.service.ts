@@ -30,14 +30,20 @@ export class ReportService {
   }
   
 
-  getDailyReport(startDate: string, endDate: string): Observable<any> {
+  getDailyReport(startDate: string, endDate: string, selectedPeriod: string = "daily"): Observable<any> {
     if(!startDate){
       var currDate = new Date();
       startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
     }
-    return this.http.get<any>(`${this.reportUrl}/daily-transaction-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}`)
+    return this.http.get<any>(`${this.reportUrl}/daily-transaction-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&period=${selectedPeriod}`)
       .pipe(
         catchError(this.handleError('Get Daily Report', null)));
+  }
+
+  getMerchantPGSummary(): Observable<any>{
+    return this.http.get<any>(`${this.reportUrl}/merchant-pg-summary`)
+      .pipe(
+        catchError(this.handleError('Get Merchant-PG-Summary', null))); 
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

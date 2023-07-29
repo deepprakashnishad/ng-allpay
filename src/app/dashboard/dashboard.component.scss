@@ -4,3 +4,50 @@
 	min-height: 250px;
 	max-width: 600px;
 }
+
+div.button, .button-selected{
+	width: 64px;
+	text-align: center;
+	padding: 4px 8px;
+	border: 1px solid;
+	border-radius: 15px;
+	border-color: #20bf55;
+	margin: 0px 0px;
+	cursor: pointer;
+}
+
+.button-selected{
+	background: #01baef;
+	color: white;
+}
+
+
+
+.highlight{
+	font-weight: bolder;
+	font-size: 3em;
+	background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mat-row:nth-child(even){
+    background-color: #e4f0ec;
+    color: white;
+}
+        
+.mat-row:nth-child(odd){
+    background-color: #ffffff;
+}
+
+tr.mat-header-row{
+    background-color: transparent;
+
+    th{
+        color: white;
+    }
+}
+
+.mat-icon.active{
+	color: green;
+}

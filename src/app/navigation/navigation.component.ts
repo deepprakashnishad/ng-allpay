@@ -5,6 +5,8 @@ import { Title } from '@angular/platform-browser';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { environment } from '../../environments/environment';
 import { StorageService } from '../storage.service';
+import { MediaObserver, MediaChange } from '@angular/flex-layout';
+
 
 
 @Component({
@@ -14,15 +16,15 @@ import { StorageService } from '../storage.service';
 	animations: [
 		trigger('openClose', [
 			state('open', style({
-				display: "flex",
-				opacity: 1,
-        width:"100%"
-			})),
+          width: '150px',
+          opacity: 1,
+          display: "block"
+      })),
 			state('closed', style({
-				display: "none",
-				opacity: 0,
-        width: "0%"
-			})),
+          width: '0px',
+          opacity: 0,
+          display: "none"
+      })),
 			transition('open => closed', [
 				animate('200ms')
 			]),
@@ -37,8 +39,11 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	isLoggedIn: boolean  = false;
 	isSidebarOpen: boolean = false;
 	name: String;
+	mobile: string;
 	@ViewChild("navToolbar") navToolbar;
 	isLeftBarOpen: boolean = false;
+
+	selectedTab: string="dashboard";
 
 	private readonly SHRINK_TOP_SCROLL_POSITION = 5;
 	shrinkToolbar = false;
@@ -51,10 +56,16 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 		private titleService: Title,
 		private renderer: Renderer2,
 		private ngZone: NgZone,
+		public media: MediaObserver
     ) {
     }
 
   ngAfterViewInit() {
+  	if(this.media.isActive("xs")){
+  		this.isLeftBarOpen = false;
+  	}else{
+  		this.isLeftBarOpen = true;
+  	}
   }
 
 	ngOnInit() {
@@ -69,19 +80,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	      this.isLoggedIn = value;
 	      if(value){
 	      	this.name = this.authenticationService.getTokenOrOtherStoredData("name");
+	      	this.mobile = this.authenticationService.getTokenOrOtherStoredData("mobile");
 	      }
     });
 
     this.renderer.listen('window', 'click', (e: Event)=>{});	
 	}
-
-	@HostListener('document:scroll', []) scrollHandler(){
-		console.log("I am scrolled");
-    }
-
-	@HostListener('window:scroll', []) windowScrollHandler(){
-		console.log("I am scrolled");
-    }
 
 	toggleLoginStatus(isLoggedIn){
 		if(isLoggedIn){
@@ -92,31 +96,16 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-  toggleSidebar() {
-    if (this.isLeftBarOpen) {
-      this.toggleLeftDrawer();
-    }
-    this.isSidebarOpen = !this.isSidebarOpen;
-    
-	}
-
-	openCategoryDrawer(){
-	console.log("openCategoryDrawer function can be removed")	
-  }
-
   toggleLeftDrawer() {
-    if (this.isSidebarOpen) {
-      this.toggleSidebar();
-    }
     this.isLeftBarOpen = !this.isLeftBarOpen;
   }
 
-  categorySelected(category) {
-    this.toggleLeftDrawer();
-  }
-
-  navigateTo(url) {
+  navigateTo(url, tabname) {
+  	this.selectedTab = tabname;
     this.router.navigate([url]);
-    this.isLeftBarOpen = false;
+    if(this.media.isActive("xs")){
+    	this.isLeftBarOpen = false;	
+    }
+    
   }
 }

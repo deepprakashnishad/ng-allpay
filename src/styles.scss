@@ -172,18 +172,26 @@ strong{
 }
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
-  background: linear-gradient(82deg, rgba(75,0,116,1) 82%, rgba(214,0,166,1) 99%, rgba(0,0,0,1) 100%);
+  background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 }
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
-  background: linear-gradient(82deg, rgba(75,0,116,0.7) 25%, rgba(214,0,166,1) 100%, rgba(0,0,0,1) 100%);
+  background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 }
 
 .mat-card{
   color: white;
-  background: linear-gradient(82deg, rgba(75,0,116,0.7) 75%, rgba(214,0,166,1) 100%, rgba(0,0,0,1) 100%);
+  background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 }
 
 .x2-icon{
   transform: scale(2);
+}
+
+div{
+  border-color: red;
+}
+
+.mat-table thead{
+  background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 }

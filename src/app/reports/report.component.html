@@ -1,4 +1,6 @@
 <div class="container">
+	<div class="filter"></div>
+	<div></div>
 	<div *ngIf="transactions.length<=0">No transactions found.</div>
 	<table *ngIf="transactions.length>0" class="full-width" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 		<ng-container matColumnDef="bp">

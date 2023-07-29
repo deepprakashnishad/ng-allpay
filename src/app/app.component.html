@@ -8,9 +8,17 @@
 	<!-- Main -->
 	<main class="main-container" fxFlex="grow" fxLayout="column" fxLayoutAlign="start">
 		<div  id="moveTop"></div>
-		<app-navigation *ngIf="isShowNavigation"></app-navigation>
-		<!--<app-navigation *ngIf="isShowNavigation"></app-navigation>-->
-		<router-outlet></router-outlet>
+		<mat-toolbar>
+			<picture>
+			  	<img src="/assets/images/logo.png" alt="Good-Act" style="width:150px;">
+			</picture>
+		</mat-toolbar>
+		<div fxLayout>
+				<app-navigation *ngIf="isLoggedIn"></app-navigation>
+				<div fxFlex="grow">
+					<router-outlet></router-outlet>
+				</div>	
+		</div>
 
 		<notifier-container class="notifier-container"></notifier-container>
 		<button *ngIf="false" class="scroll-top-button" mat-fab (click)="scrollToTopFunc($event)">
