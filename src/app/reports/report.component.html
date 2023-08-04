@@ -1,11 +1,24 @@
 <div class="container">
-	<div class="filter"></div>
-	<div></div>
+	<div class="filter">
+		<mat-form-field>
+	  		<mat-label>Selected Columns</mat-label>
+			<mat-select multiple [(ngModel)]="displayedColumns" 
+	  (ngModelChange)="displayedColumns">
+				<mat-option *ngFor="let col of availableColumns" [value]="col.value">{{col.displayName}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<h3>
+		Total Amount: {{totalAmt | currency: 'INR':'symbol-narrow' }}
+	</h3>
+	<h3>
+		Total Number of transactions: {{ transactions.length }}
+	</h3>
 	<div *ngIf="transactions.length<=0">No transactions found.</div>
-	<table *ngIf="transactions.length>0" class="full-width" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+	<table *ngIf="transactions.length>0" class="full-width" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" multiTemplateDataRows >
 		<ng-container matColumnDef="bp">
-		<th mat-header-cell *matHeaderCellDef mat-sort-header> Betting Partner </th>
-		<td mat-cell *matCellDef="let element"> {{element.bp.name}} </td>
+			<th mat-header-cell *matHeaderCellDef mat-sort-header> Betting Partner </th>
+			<td mat-cell *matCellDef="let element"> {{element.bp.name}} </td>
 		</ng-container>
 
 		<ng-container matColumnDef="m">
@@ -23,7 +36,7 @@
 		<ng-container matColumnDef="a">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
 			<td mat-cell *matCellDef="let element;"> 
-				{{element.a}}
+				{{element.a | currency: 'INR':'symbol-narrow' }}
 			</td>
 		</ng-container>
 
@@ -68,40 +81,71 @@
 			</td>
 		</ng-container>
 
-		<ng-container matColumnDef="status">
+		<ng-container matColumnDef="s">
 		<th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
 		<td mat-cell *matCellDef="let element; let i=index"> 
 			{{element.s}}
 		</td>
 		</ng-container>
 		<ng-container matColumnDef="actions">
-		<th mat-header-cell *matHeaderCellDef> Actions </th>
-		<td mat-cell *matCellDef="let element; let i=index">
-			<div fxLayout>
-				<button mat-icon-button (click)="updatePriceQuantity()" color="primary"><mat-icon>save</mat-icon></button>
-				<a mat-icon-button target="_blank" [routerLink]="['/product',element.id]" color="primary" matTooltip="View">
-					<mat-icon aria-label="View">remove_red_eye</mat-icon>
-				</a>
-				<a mat-icon-button [routerLink]="['/admin/product/edit',element.id]" color="accent" matTooltip="Edit">
-					<mat-icon aria-label="View">edit</mat-icon>
-				</a>
-				<button mat-icon-button (click)="delete(element, i)" color="error"><mat-icon>delete</mat-icon></button>
-			</div>
-		</td>
+			<th mat-header-cell *matHeaderCellDef> Actions </th>
+			<td mat-cell *matCellDef="let element; let i=index">
+				<!-- <div fxLayout>
+					<button mat-icon-button (click)="updatePriceQuantity()" color="primary"><mat-icon>save</mat-icon></button>
+					<a mat-icon-button target="_blank" [routerLink]="['/product',element.id]" color="primary" matTooltip="View">
+						<mat-icon aria-label="View">remove_red_eye</mat-icon>
+					</a>
+					<a mat-icon-button [routerLink]="['/admin/product/edit',element.id]" color="accent" matTooltip="Edit">
+						<mat-icon aria-label="View">edit</mat-icon>
+					</a>
+					<button mat-icon-button (click)="delete(element, i)" color="error"><mat-icon>delete</mat-icon></button>
+				</div> -->
+			</td>
 		</ng-container>
 		<ng-container matColumnDef="select">
-		<th mat-header-cell *matHeaderCellDef>
-			Is Active
-		</th>
-		<td mat-cell *matCellDef="let element">
-			<mat-checkbox (click)="$event.stopPropagation()"
-						(change)="selectionToggle($event, element)"
-						[checked]="element.status=='Active'">
-			</mat-checkbox>
-		</td>
+			<th mat-header-cell *matHeaderCellDef>
+				Is Active
+			</th>
+			<td mat-cell *matCellDef="let element">
+				<mat-checkbox (click)="$event.stopPropagation()"
+							(change)="selectionToggle($event, element)"
+							[checked]="element.status=='Active'">
+				</mat-checkbox>
+			</td>
 		</ng-container>
 
+		<ng-container matColumnDef="expandedDetail">
+	      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+	        <div class="full-width example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
+	          <div class="full-width detail-container" fxLayout fxLayoutAlign="space-between center">
+	          	<div class="" fxLayout="column">
+	          		<div>User Mobile: <span class="highlight-value">{{element.pud.userphone}}</span></div>
+	          		<div>User Email: <span class="highlight-value">{{element.pud.useremail}}</span></div>
+	          		<div>User Name: <span class="highlight-value">{{element.pud.username}}</span></div>
+	          	</div>
+	          	<div fxLayout="column">
+	          		<div>Payment Gateway OrderId: <span class="highlight-value">{{element.pd.pg_orderid}}</span></div>
+	          		<div>Payment Gateway TransactionId: <span class="highlight-value">{{element.pd.pg_txn_id}}</span></div>
+	          		<div>Refund Status: <span class="highlight-value">{{element.pd.pg_refund_status}}</span></div>
+	          		<div>Card Id: <span class="highlight-value">{{element.pd.card_id}}</span></div>
+	          		<div>Bank: <span class="highlight-value">{{element.pd.pg_orderid}}</span></div>
+	          	</div>
+	          	<div fxLayout="column">
+	          		<div>Wallet: <span class="highlight-value">{{element.pd.wallet}}</span></div>
+	          		<div>VPA: <span class="highlight-value">{{element.pd.vpa}}</span></div>
+	          		<div>Card Id: <span class="highlight-value">{{element.pd.card_id}}</span></div>
+	          		<div>Fee: <span class="highlight-value">{{element.pd.fee}}</span></div>
+	          		<div>Tax: <span class="highlight-value">{{element.pd.tax}}</span></div>
+	          	</div>
+	          </div>
+	        </div>
+	      </td>
+	    </ng-container>
+
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns; let i=index;"></tr>
+		<!-- <tr mat-row *matRowDef="let row; columns: displayedColumns; let i=index;"></tr> -->
+
+	    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="element.expanded" (click)="toggleRow(element)"></tr>
+	    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 	</table>
 </div>
