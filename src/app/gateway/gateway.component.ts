@@ -48,14 +48,13 @@ export class GatewayComponent implements OnInit {
     });
   }
 
-  openGatewayEditor(gateway: Gateway, index: number = -1){
-    console.log(gateway)
-    const bottomSheet = this._bottomSheet.open(GatewayEditorComponent, {data: gateway});
+  openGatewayEditor(gateway: Gateway, index: number){    const bottomSheet = this._bottomSheet.open(GatewayEditorComponent, {data: gateway});
     bottomSheet.afterDismissed().subscribe(result=>{
       if(result.id){
         this.notifier.notify("success", "Gateway details saved successfully");
         if(index===-1){
           this.gateways.push(result);
+          this.dataSource.data = this.gateways;
         }else{
           this.gateways[index] = result;  
         }
@@ -68,6 +67,7 @@ export class GatewayComponent implements OnInit {
       if(result['success']){
         this.notifier.notify("success", `${gateway.name} deleted successfully`);
         this.gateways.splice(i, 1);
+        this.dataSource.data = this.gateways;
       }
     });
   }

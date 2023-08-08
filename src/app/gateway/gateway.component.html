@@ -17,16 +17,17 @@
 
 		<ng-container matColumnDef="status">
 		<th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-		<td mat-cell *matCellDef="let element; let i=index"> 
+		<td mat-cell *matCellDef="let element"> 
 			{{element.status}}
 		</td>
 		</ng-container>
 		<ng-container matColumnDef="actions">
 			<th mat-header-cell *matHeaderCellDef> Actions </th>
-			<td mat-cell *matCellDef="let element; let i=index">
+			<td mat-cell *matCellDef="let element; let mIndex=index;">
 				<div fxLayout>
-					<button mat-icon-button color="primary" (click)="openGatewayEditor(element, i)"><mat-icon>edit</mat-icon></button>
-				<button mat-icon-button color="warn" (click)="deleteGateway(element, i)"><mat-icon>delete</mat-icon></button>
+					<button mat-icon-button color="primary" (click)="openGatewayEditor(element, mIndex)"><mat-icon>edit</mat-icon></button>
+					
+				<button mat-icon-button color="warn" (click)="deleteGateway(element, mIndex)"><mat-icon>delete</mat-icon></button>
 				</div>
 			</td>
 		</ng-container>

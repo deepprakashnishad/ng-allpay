@@ -74,12 +74,12 @@ export class BettingPartnerComponent implements OnInit {
   openMerchantEditor(bettingpartner: BettingPartner, index: number = -1){
     const bottomSheet = this._bottomSheet.open(BettingPartnerEditorComponent, {data: bettingpartner});
     bottomSheet.afterDismissed().subscribe(result=>{
-      console.log(result);
       if(result.id){
         this.notifier.notify("success", "BettingPartner details saved successfully");
         console.log(index);
         if(index===-1){
           this.bettingpartners.push(result);
+          this.dataSource.data = this.bettingpartners;
         }else{
           this.bettingpartners[index] = result;  
         }
@@ -92,6 +92,7 @@ export class BettingPartnerComponent implements OnInit {
       if(result['success']){
         this.notifier.notify("success", `${bettingpartner.name} deleted successfully`);
         this.bettingpartners.splice(i, 1);
+        this.dataSource.data = this.bettingpartners;
       }
     });
   }

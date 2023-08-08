@@ -81,6 +81,7 @@ export class MerchantComponent implements OnInit {
         console.log(index);
         if(index===-1){
           this.merchants.push(result);
+          this.dataSource.data = this.merchants;
         }else{
           this.merchants[index] = result;  
         }
@@ -93,6 +94,7 @@ export class MerchantComponent implements OnInit {
       if(result['success']){
         this.notifier.notify("success", `${merchant.name} deleted successfully`);
         this.merchants.splice(i, 1);
+        this.dataSource.data = this.merchants;
       }
     });
   }
