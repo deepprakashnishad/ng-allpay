@@ -25,7 +25,7 @@ div.button, .button-selected{
 
 .highlight{
 	font-weight: bolder;
-	font-size: 3em;
+	font-size: 2.5em;
 	background: -webkit-linear-gradient(315deg, #20bf55 0%, #01baef 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -50,4 +50,9 @@ tr.mat-header-row{
 
 .mat-icon.active{
 	color: green;
+}
+
+.mat-divider{
+	margin-top: 12px;
+	margin-bottom: 12px;
 }

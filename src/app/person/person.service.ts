@@ -22,7 +22,7 @@ export class PersonService {
      this.UserLoginUrl = environment.baseurl+'/UserLogin';
   }
 
-  get(limit, offset): Observable<Array<Person>> {
+  get(limit=100, offset=0): Observable<Array<Person>> {
   	return this.http.get<Person>(this.PersonUrl)
   		.pipe(
   			catchError(this.handleError('Get Token', null)));

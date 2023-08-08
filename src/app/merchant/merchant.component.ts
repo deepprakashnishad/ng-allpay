@@ -1,12 +1,12 @@
-import { 
-  Component, 
-  OnInit, 
-} from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MerchantService} from './merchant.service';
 import { NotifierService } from 'angular-notifier';
 import { environment } from './../../environments/environment';
 import { MerchantEditorComponent } from './merchant-editor/merchant-editor.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -23,6 +23,14 @@ export class MerchantComponent implements OnInit {
 
   merchants: Array<Merchant> = [];
 
+  displayedColumns: string[] = ['name', 'website', 'status','actions'];
+
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   constructor(
     private mService: MerchantService,
     private _bottomSheet: MatBottomSheet,
@@ -35,9 +43,32 @@ export class MerchantComponent implements OnInit {
     this.fetchMerchant();
   }
 
+  sortData(sort: MatSort) { 
+    var merchants = this.merchants.sort(function(a, b) {
+      var keyA = a[sort['active']],
+      keyB = b[sort['active']];
+      if(sort['active']==="bp" || sort['active']==="m"){
+        keyA = keyA['name'];
+        keyB = keyB['name'];
+      }
+      if(sort['direction']==="asc"){
+        if (keyA < keyB) return -1;
+        if (keyA > keyB) return 1;
+      }else if(sort['direction']==="desc"){
+        if (keyA < keyB) return 1;
+        if (keyA > keyB) return -1;
+      }
+      return 0;
+    });
+    this.dataSource.data = merchants; 
+  }
+
   fetchMerchant(){
     this.mService.get().subscribe(results=>{
       this.merchants = results;
+
+      this.dataSource = new MatTableDataSource<any>(this.merchants)
+      this.dataSource.sort = this.sort;
     });
   }
 

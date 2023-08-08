@@ -43,7 +43,7 @@ export class PersonAddEditComponent implements OnInit {
 
   	if(this.data && this.data.person){
   		this.person = this.data.person;
-      this.title = "Edit " + this.data.person.name;
+      this.title = "Edit " + this.data.person.n;
   	}else{
   		this.person = new Person();
       this.title = "Add New Person";
@@ -57,22 +57,23 @@ export class PersonAddEditComponent implements OnInit {
   }
 
   save(person){
-    if(person.mobile.indexOf("@")<0 && person.mobile.length===10){
-      person.mobile = "+91"+person.mobile;
+    if(person.m.indexOf("@")<0 && person.m.length===10){
+      person.m = "+91"+person.m;
     }
   	if(person.id === undefined || person.id === null){
   		this.personService.add(person)
   		.subscribe((person)=>{
         this.person = person;
-        this.notifier.notify("success", person.name + " created successfully. Assign role and permissions");
+        this.notifier.notify("success", person.n + " created successfully.");
+        this.dialogRef.close(person); 
       }, (error) => {
         this.notifier.notify("error", error.error.msg);
   		});
   	}else{
   		this.personService.update(person)
   		.subscribe((person)=>{
-        person.permissions = this.person.permissions;
-  			this.updatePersonPermission(person);
+        this.notifier.notify("success", "Person details updated successfully");
+        this.dialogRef.close(person);  
   		}, error=>{
         this.notifier.notify("error", error.error.msg);
   		});
@@ -89,7 +90,7 @@ export class PersonAddEditComponent implements OnInit {
   }
 
   selectRole(role: Role){
-    this.person.role = role;
+    this.person.r = role;
     this.person.permissions = role.permissions;
   }
 
@@ -104,7 +105,7 @@ export class PersonAddEditComponent implements OnInit {
   }
 
   generatePassword(){
-    this.person.password = Math.random().toString(36).slice(-10);
+    this.person.pass = Math.random().toString(36).slice(-10);
   }
 
   copied(){

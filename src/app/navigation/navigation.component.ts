@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, EventEmitter, Output, Component, HostListener, Inject, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {Router, RoutesRecognized} from '@angular/router';
 import {AuthenticationService} from '../authentication/authentication.service';
 import { Title } from '@angular/platform-browser';
@@ -7,8 +7,6 @@ import { environment } from '../../environments/environment';
 import { StorageService } from '../storage.service';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 
-
-
 @Component({
 	selector: 'app-navigation',
 	templateUrl: './navigation.component.html',
@@ -16,7 +14,7 @@ import { MediaObserver, MediaChange } from '@angular/flex-layout';
 	animations: [
 		trigger('openClose', [
 			state('open', style({
-          width: '150px',
+          width: '180px',
           opacity: 1,
           display: "block"
       })),
@@ -45,6 +43,8 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
 	selectedTab: string="dashboard";
 
+	@Output('menuSelected') menuSelected: EventEmitter<any> = new EventEmitter();
+
 	private readonly SHRINK_TOP_SCROLL_POSITION = 5;
 	shrinkToolbar = false;
   	elementPosition: any;
@@ -71,8 +71,11 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 		this.router.events.subscribe((data) => {
 	        if (data instanceof RoutesRecognized) {
+	        	console.log(data);
 	          var title = data.state.root.firstChild.data.title;
 	          this.titleService.setTitle(title);
+	          this.menuSelected.emit(title);
+	          this.selectedTab = data.state.root.firstChild.data.tabname;
 	        }
 	    });
 
@@ -101,7 +104,6 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   }
 
   navigateTo(url, tabname) {
-  	this.selectedTab = tabname;
     this.router.navigate([url]);
     if(this.media.isActive("xs")){
     	this.isLeftBarOpen = false;	

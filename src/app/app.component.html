@@ -9,12 +9,22 @@
 	<main class="main-container" fxFlex="grow" fxLayout="column" fxLayoutAlign="start">
 		<div  id="moveTop"></div>
 		<mat-toolbar>
-			<picture>
-			  	<img src="/assets/images/logo.png" alt="Good-Act" style="width:150px;">
-			</picture>
+			<div fxLayout fxLayoutGap="12px" class="full-width">
+				<picture>
+				  	<img src="/assets/images/logo.png" alt="Good-Act" style="width:150px;">
+				</picture>
+				<mat-divider [vertical]="true"></mat-divider>
+				<div fxLayout fxLayoutAlign="space-between center" class="full-width">
+					<div>{{title}}</div>
+					<div fxLayout fxLayoutGap="12px" fxLayoutAlign="center center">
+						<div><img src="/assets/images/profile/profile.png" class="profile-pic"/></div>
+						<div><mat-icon style="color:'#00b6ff'">notifications</mat-icon></div>
+					</div>
+				</div>
+			</div>
 		</mat-toolbar>
 		<div fxLayout>
-				<app-navigation *ngIf="isLoggedIn"></app-navigation>
+				<app-navigation *ngIf="isLoggedIn" (menuSelected)="menuSelected($event)"></app-navigation>
 				<div fxFlex="grow">
 					<router-outlet></router-outlet>
 				</div>	

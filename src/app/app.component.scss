@@ -38,10 +38,6 @@ button:hover,
   white-space: normal;
 }
 
-.full-width{
-  width: 100%;
-}
-
 .title{
   font-size: 5vw;
 }
@@ -54,4 +50,9 @@ button:hover,
   background-color: transparent;
   border-bottom: 1px solid;
   border-color: #d9f6ff;
+}
+
+.profile-pic{
+  width: 36px;
+  height: 36px;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router'
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker';
 import { PwaService } from './pwa.service';
 import { AuthenticationService } from './authentication/authentication.service';
@@ -11,13 +11,14 @@ import { StorageService } from './storage.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'shop-manager';
+  title = 'Dashboard';
   isShowNavigation = true;
   pwa: PwaService;
   isLoggedIn: boolean;
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private pwaService: PwaService,
     private authenticationService: AuthenticationService,
     private storageService: StorageService
@@ -33,16 +34,20 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe(
       (event: any) => {
-        if (event instanceof NavigationEnd) {          
-         if (this.router.url.includes('admin')) {
+        if (event instanceof NavigationEnd) {
+          if (this.router.url.includes('admin')) {
             this.isShowNavigation = false;
-         }
-         else {
-          this.isShowNavigation = true;
-         }
+          }
+          else {
+            this.isShowNavigation = true;
+          }
         }
       }
     );
+  }
+
+  menuSelected(title){
+    this.title = title;
   }
 
   installPwa(): void {
@@ -56,7 +61,6 @@ export class AppComponent implements OnInit {
 
   scrollToTopFunc(event) {
     var scrollElem= document.querySelector('#moveTop');
-    console.log(scrollElem);
     scrollElem.scrollIntoView({ behavior: "smooth"});
   }
 }

@@ -3,71 +3,35 @@ import {Permission} from '../admin/permission/permission';
 
 export class Person{
 	id: string;
-	name: string;
-	mobile: string;
-	isMobileVerified: boolean;
-	email: string;
-	isEmailVerified: boolean;
-	role: Role;
+	n: string;
+	m: string;
+	e: string;
+	r: Role;
 	permissions: Permission[];
-	status: string;
-	password: string;
-	referrer: any;
-	uplines: any[];
-	paidAmount: number;
-	donationQuota: number;
-	amtWithdrawable: number;
-	totalAmountWithdrawnTillDate: number;
-	totalAmountCollected: number;
-	amountCollectedForNextLevel: number;
-	directDownlines: any[];
-	teamSize: number;
-	currOrbit: number;
-	projectsInvestedIn: Array<any>;;
-	pic: any;
-	aadhar_front: any;
-	aadhar_back: any;
-	pan: any;
-	lwdlc: any;
+	s: string;
+	pass: string;
+	pic:any
+	
 
 	constructor(){
-		this.email = "";
-		this.mobile = "";
-		this.name = "";
+		this.e = "";
+		this.m = "";
+		this.n = "";
 		this.permissions = [];
-		this.status = "";
-		this.role = new Role();
-		this.password = "";
+		this.s = "";
+		this.r = new Role();
+		this.pass = "";
   }
 
   static fromJSON(data) {
     var person = new Person();
     person.id = data['id'];
-    person.name = data['n'];
-    person.mobile = data['m'];
-    person.isMobileVerified = data['mv'];
-    person.isEmailVerified = data['ev'];
-    person.email = data['e'];
-    person.role = data['r'];
+    person.n = data['n'];
+    person.m = data['m'];
+    person.e = data['e'];
+    person.r = data['r'];
     person.permissions = data['permissions'];
-    person.status = data['s'];
-    person.referrer = data['p'];
-    person.uplines = data['ulc'];
-    person.paidAmount = data['pamt'];
-    person.amtWithdrawable = data['aw'];
-    person.totalAmountWithdrawnTillDate = data['taw'];
-    person.totalAmountCollected = data['tac'];
-    person.teamSize = data['ts'];
-    person.directDownlines = data['ddl'];
-    person.currOrbit = data['curr_orbit'];
-    // person.projectsInvestedIn = data[''];
-    person.aadhar_front = data['adh_f'];
-    person.aadhar_back = data['adh_b'];
-    person.pan = data['pan'];
-    person.pic = data['pic'];
-    person.amountCollectedForNextLevel = data['acnl'];
-    person.lwdlc = data['lwdlc'];
-    person.donationQuota = data['dq'];
+    person.s = data['s'];
     return person;
   }
 

@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="filter">
+	<div class="filter" fxLayout="row wrap" fxLayoutGap="12px">
 		<mat-form-field>
 	  		<mat-label>Selected Columns</mat-label>
 			<mat-select multiple [(ngModel)]="displayedColumns" 
@@ -7,6 +7,15 @@
 				<mat-option *ngFor="let col of availableColumns" [value]="col.value">{{col.displayName}}</mat-option>
 			</mat-select>
 		</mat-form-field>
+		<!-- <mat-form-field>
+	  		<mat-label>Report Type</mat-label>
+			<mat-select [(ngModel)]="selectedReportType">
+				<mat-option [value]="'transaction'">Transaction Report</mat-option>
+				<mat-option [value]="'payment-gateway'">Payment Gateway Report</mat-option>
+				<mat-option [value]="'betting-partner'">Betting Partner Report</mat-option>
+				<mat-option [value]="'merchant'">Merchant Report</mat-option>
+			</mat-select>
+		</mat-form-field> -->
 	</div>
 	<h3>
 		Total Amount: {{totalAmt | currency: 'INR':'symbol-narrow' }}
@@ -124,18 +133,18 @@
 	          		<div>User Name: <span class="highlight-value">{{element.pud.username}}</span></div>
 	          	</div>
 	          	<div fxLayout="column">
-	          		<div>Payment Gateway OrderId: <span class="highlight-value">{{element.pd.pg_orderid}}</span></div>
-	          		<div>Payment Gateway TransactionId: <span class="highlight-value">{{element.pd.pg_txn_id}}</span></div>
-	          		<div>Refund Status: <span class="highlight-value">{{element.pd.pg_refund_status}}</span></div>
-	          		<div>Card Id: <span class="highlight-value">{{element.pd.card_id}}</span></div>
-	          		<div>Bank: <span class="highlight-value">{{element.pd.pg_orderid}}</span></div>
+	          		<div>Payment Gateway OrderId: <span class="highlight-value" *ngIf="element.pd">{{element.pd.pg_orderid}}</span></div>
+	          		<div>Payment Gateway TransactionId: <span class="highlight-value" *ngIf="element.pd">{{element.pd.pg_txn_id}}</span></div>
+	          		<div>Refund Status: <span class="highlight-value" *ngIf="element.pd">{{element.pd.pg_refund_status}}</span></div>
+	          		<div>Card Id: <span class="highlight-value" *ngIf="element.pd">{{element.pd.card_id}}</span></div>
+	          		<div>Bank: <span class="highlight-value" *ngIf="element.pd">{{element.pd.pg_orderid}}</span></div>
 	          	</div>
 	          	<div fxLayout="column">
-	          		<div>Wallet: <span class="highlight-value">{{element.pd.wallet}}</span></div>
-	          		<div>VPA: <span class="highlight-value">{{element.pd.vpa}}</span></div>
-	          		<div>Card Id: <span class="highlight-value">{{element.pd.card_id}}</span></div>
-	          		<div>Fee: <span class="highlight-value">{{element.pd.fee}}</span></div>
-	          		<div>Tax: <span class="highlight-value">{{element.pd.tax}}</span></div>
+	          		<div>Wallet: <span class="highlight-value" *ngIf="element.pd">{{element.pd.wallet}}</span></div>
+	          		<div>VPA: <span class="highlight-value" *ngIf="element.pd">{{element.pd.vpa}}</span></div>
+	          		<div>Card Id: <span class="highlight-value" *ngIf="element.pd">{{element.pd.card_id}}</span></div>
+	          		<div>Fee: <span class="highlight-value" *ngIf="element.pd">{{element.pd.fee}}</span></div>
+	          		<div>Tax: <span class="highlight-value" *ngIf="element.pd">{{element.pd.tax}}</span></div>
 	          	</div>
 	          </div>
 	        </div>

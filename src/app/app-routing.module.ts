@@ -7,7 +7,7 @@ import { PermissionComponent } from './admin/permission/permission.component';
 import { RoleComponent } from './admin/role/role.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { ActivityLogComponent } from './admin/activity-log/activity-log.component';
-import { PersonComponent } from './person/person.component';
+import { PersonListComponent } from './person/person-list/person-list.component';
 import { UserReportComponent } from './admin/reports/user-report/user-report.component';
 import {AboutUsComponent} from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -25,52 +25,52 @@ const routes: Routes = [
 	 {
 		path: '', 
 		component: HomeComponent,
-		data: { title: 'Home', permissions: []}
+		data: { title: 'Home', tabname: 'home', permissions: []}
 	},	 
 	{
 		path: 'home', 
 		component: HomeComponent,
-		data: { title: 'Home', permissions: []}
+		data: { title: 'Home', tabname: 'home', permissions: []}
 	},
 	{
 		path: 'merchants', 
 		component: MerchantComponent,
-		data: { title: 'Merchants', permissions: []}
+		data: { title: 'Merchants', tabname: 'merchants', ed:"test", permissions: []}
 	},
 	{
 		path: 'betting-partner', 
 		component: BettingPartnerComponent,
-		data: { title: 'BettingPartners', permissions: []}
+		data: { title: 'BettingPartners', tabname: 'betting-partner', permissions: []}
 	},
 	{
 		path: 'payment-gateways', 
 		component: GatewayComponent,
-		data: { title: 'Payment Gateway', permissions: []}
+		data: { title: 'Payment Gateway', tabname: 'payment-gateways', permissions: []}
 	},
 	{
 		path: 'reports', 
 		component: ReportComponent,
-		data: { title: 'Report', permissions: []}
+		data: { title: 'Report', tabname: 'reports', permissions: []}
 	},
 	{
 		path: 'dashboard', 
 		component: DashboardComponent,
-		data: { title: 'Dashboard', permissions: []}
+		data: { title: 'Dashboard', tabname: 'dashboard', permissions: []}
 	},
 	{
 		path: 'privacy', 
 		component: PrivacyComponent,
-		data: { title: 'Privacy', permissions: []}
+		data: { title: 'Privacy', tabname: 'privacy', permissions: []}
 	},
 	{
 		path: 'contact', 
 		component: ContactUsComponent,
-		data: { title: 'Contact-Us', permissions: []}
+		data: { title: 'Contact-Us', tabname: 'contact', permissions: []}
 	},
 	{
 		path: 'users', 
-		component: PersonComponent,
-		data: { title: 'Person', permissions: []}
+		component: PersonListComponent,
+		data: { title: 'Users', tabname: 'users', permissions: []}
 	},
 	
 	/* {path: 'person', loadChildren: './person/person.module#PersonModule', canLoad: [AuthGuardService],

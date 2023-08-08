@@ -35,6 +35,7 @@
 			</div>
 		</div>
 	</div>
+	<mat-divider></mat-divider>
 	<div>
 		<h3>Merchant - Payment Gateway Status</h3>
 		<table *ngIf="transactions.length>0" class="full-width" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">

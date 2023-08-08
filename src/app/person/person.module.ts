@@ -1,20 +1,16 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import {PersonRoutingModule} from './person-routing/person-routing.module';
 import {SharedModule} from './../shared/shared.module';
-import { PersonComponent } from './person.component';
-import { PersonSearchComponent} from './person-search/person-search.component';
-import { PersonExactMatchComponent} from './person-exact-match/person-exact-match.component';
 import {PersonService} from './person.service';
 import { PersonAddEditComponent } from './person-add-edit/person-add-edit.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PersonListComponent } from './person-list/person-list.component';
 
 @NgModule({
   declarations: [
-    PersonComponent, 
-    PersonAddEditComponent, 
-    PersonSearchComponent, 
-    PersonExactMatchComponent,
-    ResetPasswordComponent
+    PersonAddEditComponent,  
+    ResetPasswordComponent,
+    PersonListComponent
   ],
   imports: [
     SharedModule,
@@ -22,6 +18,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   entryComponents:[PersonAddEditComponent, ResetPasswordComponent],
   providers:[PersonService],
-  exports: [PersonSearchComponent, PersonExactMatchComponent]
+  exports: []
 })
 export class PersonModule { }
